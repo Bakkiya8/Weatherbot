@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from app.services.weather_service import WeatherService
 from app.services.gemini_service import GeminiService
 from app.models.chat import ChatRequest
+import traceback
+
 
 # Create a FastAPI application
 app = FastAPI()

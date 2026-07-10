@@ -1,7 +1,9 @@
 import streamlit as st
 import requests
+import os
 
-API_URL = "http://127.0.0.1:8000/chat"
+BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+API_URL = f"{BACKEND_URL}/chat"
 
 st.set_page_config(page_title="AI Weather Assistant", page_icon="🌤️")
 
@@ -49,8 +51,16 @@ if user_input:
         if response.status_code == 200:
             bot_reply = response.json()["reply"]
         else:
-            bot_reply = "❌ Error from backend API"
+            try:
+                detail = response.json().get("detail", response.text)
+            except ValueError:
+                detail = response.text
+            bot_reply = f"❌ Error ({response.status_code}): {detail}"
 
+    except requests.exceptions.Timeout:
+        bot_reply = "❌ Request timed out. The backend took too long to respond."
+    except requests.exceptions.ConnectionError:
+        bot_reply = f"❌ Could not connect to backend at {BACKEND_URL}. Is it running?"
     except Exception as e:
         bot_reply = f"❌ Connection error: {str(e)}"
 
