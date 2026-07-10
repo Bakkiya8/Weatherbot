@@ -3,3 +3,6 @@ git add .
 git commit -m "included dockerfile for both UI and PI"
 git branch
 git push origin main
+
+
+doskey /history
