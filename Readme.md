@@ -37,4 +37,19 @@ app.main → Refers to the main.py file inside the app folder.
 :app → Uses the app = FastAPI() object from that file.
 --reload → Automatically restarts the server whenever you save changes.
 
-1c758b06485c43f45f04af8ad8d37294
+It covers:
+
+Python — why we used it
+FastAPI + Uvicorn — backend/API
+Streamlit — UI
+Google Gemini — AI/LLM
+Google GenAI SDK
+Tool/function calling
+OpenWeather API
+Docker — why we containerized it
+GHCR — why we used it
+Azure Container Apps
+Azure Resource Group & Container Apps Environment
+Azure CLI
+Environment variables and secrets
+Complete request flow: User → UI → API → Gemini → Weather Service → OpenWeather → response
